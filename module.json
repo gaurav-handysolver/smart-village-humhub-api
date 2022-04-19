@@ -1,14 +1,21 @@
 {
     "id": "rest",
-    "name": "RESTful API",
-    "description": "Provides a RESTful API to the HumHub installation",
+    "name": "Smart Village",
+    "description": "Create APIs for Smart Village",
     "keywords": [
-        "api", "rest"
+        "smartVillage", "api", "module"
     ],
-    "version": "0.4.4",
+    "version": "1.0",
     "homepage": "https://github.com/humhub/rest",
     "humhub": {
         "minVersion": "1.8"
     },
-    "screenshots": []
+    "screenshots": [],
+    "authors": [
+        {
+            "name" : "Gaurav",
+            "email" : "gaurav.handysolver@gmail.com",
+            "role" : "Developer"
+        }
+    ]
 }
