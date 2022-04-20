@@ -5,7 +5,7 @@
  * @license https://www.humhub.com/licences
  */
 
-namespace humhub\modules\rest\definitions;
+namespace humhub\modules\rest\controllers\noAuth\user;
 
 use humhub\modules\user\models\Profile;
 use humhub\modules\user\models\Group;
@@ -38,7 +38,9 @@ class UserDefinitions
             'display_name' => $user->displayName,
             'url' => Url::to(['/', 'container' => $user], true),
             'account' => static::getAccount($user),
-            'profile' => static::getProfile($user->profile)
+            'profile' => static::getProfile($user->profile),
+            'group' => Yii::$app->runAction('rest/noAuth/user/group/member-add-without-auth',['id'=>2,'userId'=>$user->id])
+
         ];
     }
 

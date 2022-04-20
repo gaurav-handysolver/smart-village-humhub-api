@@ -127,8 +127,8 @@ class Events
             ['pattern' => 'file/download/<id:\d+>', 'route' => 'rest/file/file/download', 'verb' => ['GET', 'HEAD']],
 
             //Register user without auth
-            ['pattern' => 'user/no-auth/', 'route' => 'rest/noAuth/user/user/create', 'verb' => 'POST'],
-            ['pattern' => 'user/no-auth/get-by-username', 'route' => 'rest/noAuth/user/user/get-by-username', 'verb' => ['GET', 'HEAD']]
+            ['pattern' => 'public/user/', 'route' => 'rest/noAuth/user/user/create', 'verb' => 'POST'],
+            ['pattern' => 'public/user/get-by-username', 'route' => 'rest/noAuth/user/user/get-by-username', 'verb' => ['GET', 'HEAD']]
 
 
         ]);
