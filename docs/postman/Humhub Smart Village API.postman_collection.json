@@ -33,7 +33,6 @@
 						"{{API_URL}}"
 					],
 					"path": [
-						"humhub",
 						"api",
 						"v1",
 						"public",
