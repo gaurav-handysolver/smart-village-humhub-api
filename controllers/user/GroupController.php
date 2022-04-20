@@ -9,6 +9,7 @@ namespace humhub\modules\rest\controllers\user;
 
 use humhub\modules\admin\permissions\ManageGroups;
 use humhub\modules\rest\components\BaseController;
+use humhub\modules\rest\components\NoAuthBaseController;
 use humhub\modules\rest\definitions\UserDefinitions;
 use humhub\modules\user\models\GroupUser;
 use humhub\modules\user\models\Group;
@@ -19,7 +20,7 @@ use Yii;
 /**
  * Class GroupController
  */
-class GroupController extends BaseController
+class GroupController extends NoAuthBaseController
 {
 
     /**
@@ -123,12 +124,37 @@ class GroupController extends BaseController
 
     public function actionMemberAdd($id)
     {
+
         $group = Group::findOne(['id' => $id]);
         if ($group === null) {
             return $this->returnError(404, 'Group not found!');
         }
 
         $userId = Yii::$app->request->get('userId');
+        $user = User::findOne(['id' => $userId]);
+        if ($user === null) {
+            return $this->returnError(404, 'User not found!');
+        }
+
+        if ($group->isMember($userId)) {
+            return $this->returnError(400, 'User is already a member of the group!');
+        }
+
+        if ($group->addUser($userId, !(empty(Yii::$app->request->get('isManager'))))) {
+            return $this->returnSuccess('Member added!');
+        }
+
+        return $this->returnError(400, 'Could not add member!');
+    }
+
+    public function actionMemberAddWithoutAuth($id,$userId)
+    {
+
+        $group = Group::findOne(['id' => $id]);
+        if ($group === null) {
+            return $this->returnError(404, 'Group not found!');
+        }
+
         $user = User::findOne(['id' => $userId]);
         if ($user === null) {
             return $this->returnError(404, 'User not found!');

@@ -10,6 +10,7 @@ namespace humhub\modules\rest\controllers\noAuth\user;
 use humhub\modules\admin\permissions\ManageUsers;
 use humhub\modules\rest\components\BaseController;
 use humhub\modules\rest\components\NoAuthBaseController;
+use humhub\modules\rest\controllers\user\GroupController;
 use humhub\modules\rest\definitions\UserDefinitions;
 use humhub\modules\user\models\Password;
 use humhub\modules\user\models\Profile;
@@ -199,6 +200,7 @@ class UserController extends NoAuthBaseController
             if ($profile->save() && $password->save()) {
                 if($password->mustChangePassword) {
                     $user->setMustChangePassword(true);
+
                 }
                 return $this->actionView($user->id);
             }
