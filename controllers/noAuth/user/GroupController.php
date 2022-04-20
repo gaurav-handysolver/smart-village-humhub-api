@@ -7,11 +7,9 @@
 
 namespace humhub\modules\rest\controllers\noAuth\user;
 
-use humhub\modules\admin\permissions\ManageGroups;
 use humhub\modules\rest\components\NoAuthBaseController;
-use humhub\modules\rest\definitions\UserDefinitions;
-use humhub\modules\user\models\GroupUser;
-use humhub\modules\user\models\Group;
+use humhub\modules\rest\models\noAuthModels\NoAuthGroup;
+
 use humhub\modules\user\models\User;
 use Yii;
 
@@ -34,7 +32,7 @@ class GroupController extends NoAuthBaseController
 
     public function actionMemberAddWithoutAuth($id,$userId)
     {
-        $group = Group::findOne(['id' => $id]);
+        $group = NoAuthGroup::findOne(['id' => $id]);
         if ($group === null) {
             return $this->returnError(404, 'Group not found!');
         }

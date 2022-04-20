@@ -28,9 +28,9 @@
 					}
 				},
 				"url": {
-					"raw": "localhost/humhub/api/v1/public/user",
+					"raw": "{{API_URL}}/api/v1/public/user",
 					"host": [
-						"localhost"
+						"{{API_URL}}"
 					],
 					"path": [
 						"humhub",
